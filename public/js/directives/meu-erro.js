@@ -1,0 +1,1 @@
+<span ng-show='{{exibir}}' class="form-control alert-danger" ng-transclude>mensagem de erro</span>

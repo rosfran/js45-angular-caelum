@@ -1,0 +1,48 @@
+<div class="jumbotron">
+    <h1 class="text-center">Alurapic Rosfran</h1>
+</div>
+<p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+
+<!--
+<div class="col-md-2" ng-repeat="foto in fotos">
+
+<div class="panel-heading">
+<h3 class="panel-title text-center">{{foto.titulo}}</h3>
+</div>
+
+<div class="panel-body">
+<img class="img-responsive center-block"  ng-src="{{foto.url}}">
+</div>
+
+
+</div>
+-->
+<div class="row">
+
+
+    <form>  
+        <div class="input-group">
+            <span class="input-group-btn">
+                <a href="/fotos/new" class='btn btn-primary'>Nova foto</a>
+            </span>
+            <input class="form-control" type="text" ng-model="txtBusca" placeholder="filtrar pelo título da foto" ng-model-options="{ debounce: 500}">
+        </div>
+    </form>
+
+</div>
+
+<div class="row">
+
+    <meu-painel class="col-md-2 painel-animado" titulo="{{$index}} - {{foto.titulo}}" ng-repeat="foto in fotos | filter: {titulo: txtBusca}">
+
+        <img class="img-responsive center-block"  src="{{foto.url}}" alt="{{$index}} - {{foto.titulo}}">
+        <botao-primario nome="Editar" acao="/fotos/edit/{{foto._id}}"></botao-primario>
+        <botao-perigo nome="Remover" acao="remover(foto)"></botao-perigo>
+<!--
+        <a class="btn btn-primary btn-block"  href='/fotos/edit/{{foto._id}}'>Editar</a>                  
+        <button class="btn btn-danger btn-block" ng-click='remover(foto)'>Remover</button>
+-->
+
+    </meu-painel>                
+
+</div>
