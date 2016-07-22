@@ -26,7 +26,8 @@ angular.module('alurapic').controller('FotoController', function($scope, recurso
                                        
                     $scope.mensagem = dados.mensagem;
                     console.log($scope.mensagem);
-                    
+                    $scope.focado=true;
+                    //$scope.$broadcast('fotoCadastrada');
                 
                 }).catch( function(dados){
                     console.log(dados.mensagem);

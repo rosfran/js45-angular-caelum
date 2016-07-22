@@ -57,22 +57,28 @@ angular.module('minhasDiretivas', [])
     };
     return ddo;
 }).directive('meuFocus', function() {
-    
+
     var ddo={};
     ddo.restrict='A';
-    
-    ddo.scope = {
-        focado: '='
-    };
-    
+
     ddo.link = function(scope, element) {
-        scope.$watch('focado', function() {
-            
+
+        scope.$on('fotoCadastrada', function() {
+            console.log('fotoCadastrada - setFocus');
+            element[0].focus();
+        });
+        /*scope.$watch('focado', function(novoValor, valorAntigo) {
+            console.log('novoValor - focado = '+novoValor);
+            console.log('valorAntigo - focado = '+valorAntigo);
             if (scope.focado) {
                 element[0].focus();
                 scope.focado=false;
             }
-        });
+        });*/
+
+        ddo.scope = {
+            focado: '='
+        };
     };
-    
+
 });
