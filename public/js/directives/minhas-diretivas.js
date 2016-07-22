@@ -8,7 +8,7 @@ angular.module('minhasDiretivas', [])
 
     var ddo = {};
     // A diretiva pode ser utilizada como Attribute | Element | Comment
-    ddo.restrict = "AE";
+    ddo.restrict = 'AE';
 
     ddo.scope = {
         titulo: '@'
@@ -20,7 +20,7 @@ angular.module('minhasDiretivas', [])
     return ddo;
 }).directive('minhaFoto', function() {
     return {
-        restrict: "E",
+        restrict: 'E',
         template: '<img class="img-responsive center-block" src="{{url}}" alt="{{titulo}}">',
         scope: {
             titulo: '@',
@@ -41,9 +41,9 @@ angular.module('minhasDiretivas', [])
     return {
         transclude: true,
         restrict: 'AE',
-        templateUrl: "js/directives/meu-erro.html",
+        templateUrl: 'js/directives/meu-erro.html',
         scope: {
-            mensagem: "@",
+            mensagem: '@',
             exibir: '@',
         },
     };
@@ -56,4 +56,23 @@ angular.module('minhasDiretivas', [])
         acao: '@',
     };
     return ddo;
+}).directive('meuFocus', function() {
+    
+    var ddo={};
+    ddo.restrict='A';
+    
+    ddo.scope = {
+        focado: '='
+    };
+    
+    ddo.link = function(scope, element) {
+        scope.$watch('focado', function() {
+            
+            if (scope.focado) {
+                element[0].focus();
+                scope.focado=false;
+            }
+        });
+    };
+    
 });

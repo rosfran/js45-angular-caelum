@@ -1,5 +1,5 @@
 // não pode usar o segundo parâmetro (dependências) porque senão cria um novo módulo
-angular.module('alurapic').controller('FotoController', function($scope, recursoFoto, $routeParams){
+angular.module('alurapic').controller('FotoController', function($scope, recursoFoto, $routeParams, cadastroDeFotos){
 
     $scope.mensagem = '';
     
@@ -21,7 +21,19 @@ angular.module('alurapic').controller('FotoController', function($scope, recurso
         
         if ($scope.formulario.$valid){
 
-            if ($routeParams.fotoId) {
+            cadastroDeFotos.cadastrar($scope.foto).then(
+                                   function(dados){
+                                       
+                    $scope.mensagem = dados.mensagem;
+                    console.log($scope.mensagem);
+                    
+                
+                }).catch( function(dados){
+                    console.log(dados.mensagem);
+                    $scope.mensagem = dados.mensagem;
+                });
+            
+            /*if ($routeParams.fotoId) {
 
                 recursoFoto.update({ fotoId: $scope.foto._id }, $scope.foto, 
                                    function(){
@@ -44,7 +56,7 @@ angular.module('alurapic').controller('FotoController', function($scope, recurso
                     $scope.mensagem = 'Ocorreu um erro ao cadastrar a foto!';
                 });
             }
-
+*/
         }
     };
 });
